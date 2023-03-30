@@ -1,4 +1,26 @@
 .alinha{
     text-align: center;
     color: #304d63;
+ 
 }
+
+
+.form{
+    width: 75%;
+    margin: 2em 0;
+}
+
+.container_inputs{
+    display: flex;
+    align-items: center;
+    margin: .5em .5em .5em .5em;
+}
+
+.inputs{
+    margin: .5em 3em .5em 3em;
+}
+
+.btn{
+    align-items: end;
+}
+

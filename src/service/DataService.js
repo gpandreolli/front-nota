@@ -1,54 +1,56 @@
-import axios from 'axios';
+import axios from "axios";
 //import LineChart from './LineChart';
 
-export async function getDados(symbol){
-        
-       const response = await axios.get(`http://localhost:3001/values?symbol=${symbol}`);
-       
-        var valores = [];
-        var datas = [];
-        var contador = 0;
-        var nomeProduto;
-        response.data.map(k =>{
-           
-        if(nomeProduto !== k.produto && contador ===0){
-            nomeProduto = k.produto;
-            ;
-        }
+export async function getProdutos(symbol) {
+  const response = await axios.get(
+    `http://localhost:3001/produtos?symbol=${symbol}`
+  );
 
-        ;
-        datas[contador] = k.dataEmissao;
-        ;
-        valores[contador] = parseFloat(k.valorUn);
-        contador++;
-           return null;
-       })
-       debugger;
-       console.log(valores);
-       return valores;
-       
+  // response.data.map((p) => {});
+  debugger;
+  console.log("Response do produtos no DAtaService");
+  console.log(response.data);
+  return response.data.json;
 }
 
-export async function getDataEmissao(symbol){
-    ;
-   const response = await axios.get(`http://localhost:3001/values?symbol=${symbol}`);
-   ;
-   
-    var datasEm = [];
-    var contador = 0;
+export async function getDados(symbol) {
+  const response = await axios.get(
+    `http://localhost:3001/values?symbol=${symbol}`
+  );
 
-    response.data.map(k =>{
-       
-   
+  var valores = [];
+  var datas = [];
+  var contador = 0;
+  var nomeProduto;
+  response.data.map((k) => {
+    if (nomeProduto !== k.produto && contador === 0) {
+      nomeProduto = k.produto;
+    }
 
+    datas[contador] = k.dataEmissao;
+    valores[contador] = parseFloat(k.valorUn);
+    contador++;
+    return null;
+  });
+  debugger;
+  console.log(valores);
+  return valores;
+}
 
-        datasEm[contador] = k.dataEmissao;
-        contador++;
+export async function getDataEmissao(symbol) {
+  const response = await axios.get(
+    `http://localhost:3001/values?symbol=${symbol}`
+  );
+  var datasEm = [];
+  var contador = 0;
 
-       return null;
-   })
-   debugger;
-   console.log(datasEm);
-   return datasEm;
-   
+  response.data.map((k) => {
+    datasEm[contador] = k.dataEmissao;
+    contador++;
+
+    return null;
+  });
+  debugger;
+  console.log(datasEm);
+  return datasEm;
 }
